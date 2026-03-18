@@ -12,49 +12,75 @@ export const StatsSection: React.FC = () => {
   return (
     <section
       style={{
-        padding: "60px 20px",
+        padding: "80px 20px",
+        borderRadius: "16px",
         backgroundColor: theme.surface,
         display: "flex",
         justifyContent: "center",
+        fontFamily: "'Inter', sans-serif",
       }}
     >
+      <style>
+        {`
+          .stat-value {
+            font-size: 3.1rem;
+            font-weight: 800;
+            line-height: 1;
+            display: block;
+            margin-bottom: 12px;
+          }
+          .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.8;
+          }
+          @media (max-width: 1224px) {
+            .stat-value {
+              font-size: 2.5rem;
+            }
+            .stat-label {
+              font-size: 0.9rem;
+            }
+          }
+          @media (max-width: 480px) {
+            .stat-value {
+              font-size: 2rem;
+            }
+          }
+        `}
+      </style>
+
       <div
         style={{
           maxWidth: "1200px",
           width: "100%",
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "space-between",
-          gap: "40px",
+          justifyContent: "center",
+          gap: "40px 60px",
         }}
       >
         {t.stats.map((stat, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            style={{ textAlign: "center", flex: "1 1 200px" }}
+            transition={{
+              delay: index * 0.1,
+              duration: 0.5,
+              ease: "easeOut",
+            }}
+            style={{
+              textAlign: "center",
+              flex: "1 1 200px",
+              minWidth: "150px",
+            }}
           >
-            <span
-              style={{
-                fontSize: "3.5rem",
-                fontWeight: 800,
-                color: theme.text,
-                display: "block",
-                marginBottom: "8px",
-              }}
-            >
+            <span className="stat-value" style={{ color: theme.text }}>
               {stat.value}
             </span>
-            <span
-              style={{
-                fontSize: "1rem",
-                color: theme.textSecondary,
-                fontWeight: 500,
-              }}
-            >
+            <span className="stat-label" style={{ color: theme.textSecondary }}>
               {stat.label}
             </span>
           </motion.div>

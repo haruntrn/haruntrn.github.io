@@ -11,11 +11,11 @@ export interface Theme {
 
 export const theme: Theme = {
   background: "#ffffff",
-  surface: "#F4F7F9",
-  text: "#111827",
-  textSecondary: "#4B5563",
-  primary: "#0F2C59",
-  primaryHover: "#1A417B",
-  darkSection: "#0F2C59",
+  surface: "#F8F9FA",
+  text: "#1E293B",
+  textSecondary: "#64748B",
+  primary: "#1A365D",
+  primaryHover: "#2B4C7E",
+  darkSection: "#0B1727",
   darkSectionText: "#ffffff",
 };

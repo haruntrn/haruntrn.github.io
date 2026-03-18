@@ -9,40 +9,85 @@ export const FinalCTA: React.FC = () => {
   const { theme } = useTheme();
   const { t } = useLanguage();
 
+  const handleScrollToContact = () => {
+    const elem = document.getElementById("contact");
+    if (elem) {
+      elem.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       style={{
         padding: "100px 20px",
-        backgroundColor: theme.darkSection,
+        backgroundColor: theme.primary,
         display: "flex",
         justifyContent: "center",
         borderBottom: "1px solid rgba(255,255,255,0.1)",
+        fontFamily: "'Inter', sans-serif",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1200px",
-          width: "100%",
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "40px",
-        }}
-      >
+      <style>
+        {`
+          .final-cta-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+          }
+          
+          @media (max-width: 1024px) {
+            .final-cta-container {
+              flex-direction: column;
+              text-align: center;
+              gap: 48px;
+            }
+            
+            .final-cta-actions {
+              align-items: center !important;
+              width: 100%;
+            }
+
+            .final-cta-title {
+              font-size: 2.2rem !important;
+              max-width: 100% !important;
+            }
+          }
+
+          @media (max-width: 768px) {
+            section {
+              padding: 80px 20px !important;
+            }
+            .final-cta-title {
+              font-size: 1.8rem !important;
+            }
+            .final-cta-button {
+              width: 100%;
+              padding: 18px 32px !important;
+            }
+          }
+        `}
+      </style>
+
+      <div className="final-cta-container">
         <h2
+          className="final-cta-title"
           style={{
-            fontSize: "3rem",
+            fontSize: "2.5rem",
             fontWeight: 800,
             color: theme.darkSectionText,
             margin: 0,
             maxWidth: "500px",
+            lineHeight: "1.2",
           }}
         >
           {t.finalTitle}
         </h2>
 
         <div
+          className="final-cta-actions"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -51,6 +96,8 @@ export const FinalCTA: React.FC = () => {
           }}
         >
           <motion.button
+            className="final-cta-button"
+            onClick={handleScrollToContact}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{
@@ -62,11 +109,18 @@ export const FinalCTA: React.FC = () => {
               border: "none",
               borderRadius: "8px",
               cursor: "pointer",
+              boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
             }}
           >
             {t.heroCta}
           </motion.button>
-          <span style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.7)" }}>
+          <span
+            style={{
+              fontSize: "0.9rem",
+              color: "rgba(255,255,255,0.7)",
+              fontWeight: 500,
+            }}
+          >
             {t.heroSubCta}
           </span>
         </div>

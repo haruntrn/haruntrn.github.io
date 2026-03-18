@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import cargo_containers from "../assets/cargo-containers.jpeg";
 
 export const SectorsSection: React.FC = () => {
   const { theme } = useTheme();
@@ -11,72 +12,102 @@ export const SectorsSection: React.FC = () => {
 
   return (
     <section
+      id="sectors"
       style={{
-        padding: "80px 20px",
-        backgroundColor: theme.surface,
-        borderBottom: `1px solid ${theme.textSecondary}22`,
-        borderTop: `1px solid ${theme.textSecondary}22`,
+        padding: "64px 20px",
+        backgroundImage: `linear-gradient(to bottom, ${theme.surface}F2, ${theme.surface}F2), url(${cargo_containers})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        borderBottom: `1px solid ${theme.textSecondary}11`,
+        borderTop: `1px solid ${theme.textSecondary}11`,
+        fontFamily: "'Inter', sans-serif",
       }}
     >
+      <style>
+        {`
+          .sectors-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+          }
+          .sector-pill {
+            padding: 18px 36px;
+            background-color: ${theme.background};
+            border: 1px solid ${theme.textSecondary}22;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: ${theme.textSecondary};
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: default;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+      
+
+          @media (max-width: 768px) {
+            section {
+              min-height: auto !important;
+              padding: 80px 20px !important;
+              background-attachment: scroll !important; /* Fixed bg issues on mobile */
+            }
+            .sectors-container {
+              gap: 12px;
+            }
+            .sector-pill {
+              padding: 12px 24px !important;
+              font-size: 0.85rem !important;
+              letter-spacing: 0.5px !important;
+            }
+            .sectors-header {
+              font-size: 0.9rem !important;
+              margin-bottom: 30px !important;
+            }
+          }
+        `}
+      </style>
+
       <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
+        style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}
       >
         <motion.h3
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="sectors-header"
           style={{
-            fontSize: "1rem",
-            fontWeight: 700,
+            fontSize: "1.25rem",
+            fontWeight: 800,
             color: theme.primary,
             textTransform: "uppercase",
-            letterSpacing: "3px",
-            marginBottom: "40px",
+            letterSpacing: "4px",
+            marginBottom: "60px",
           }}
         >
           {t.sectorsTitle}
         </motion.h3>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "16px",
-          }}
-        >
+        <div className="sectors-container">
           {t.sectors.map((sector, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
               whileHover={{
-                y: -4,
+                y: -6,
                 backgroundColor: theme.primary,
-                color: theme.background,
+                color: "#ffffff",
                 borderColor: theme.primary,
+                boxShadow: `0 15px 30px ${theme.primary}33`,
               }}
-              style={{
-                padding: "16px 32px",
-                backgroundColor: theme.background,
-                border: `1px solid ${theme.textSecondary}33`,
-                borderRadius: "50px",
-                fontSize: "0.95rem",
-                fontWeight: 600,
-                color: theme.textSecondary,
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-                cursor: "default",
-                boxShadow: "0 4px 6px rgba(0,0,0,0.02)",
-              }}
+              className="sector-pill"
             >
               {sector}
             </motion.div>

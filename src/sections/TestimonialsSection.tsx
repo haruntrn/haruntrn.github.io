@@ -11,58 +11,99 @@ export const TestimonialsSection: React.FC = () => {
 
   return (
     <section
+      id="testimonials"
       style={{
         padding: "120px 20px",
         backgroundColor: theme.background,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        fontFamily: "'Inter', sans-serif",
       }}
     >
-      <h2
+      <style>
+        {`
+          .testimonials-grid {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            justify-content: center;
+          }
+          .testimonial-card {
+            background-color: ${theme.surface};
+            padding: 48px 40px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid ${theme.textSecondary}11;
+            transition: transform 0.3s ease;
+          }
+          @media (max-width: 1024px) {
+            .testimonials-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+          @media (max-width: 768px) {
+            section {
+               padding: 80px 20px !important;
+            }
+            .testimonials-header {
+              font-size: 2.2rem !important;
+              margin-bottom: 48px !important;
+            }
+            .testimonials-grid {
+              grid-template-columns: 1fr;
+              gap: 20px;
+            }
+            .testimonial-card {
+              padding: 32px !important;
+            }
+          }
+        `}
+      </style>
+
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="testimonials-header"
         style={{
-          fontSize: "2.5rem",
+          fontSize: "3rem",
           fontWeight: 800,
           color: theme.text,
-          marginBottom: "64px",
+          marginBottom: "72px",
+          textAlign: "center",
+          letterSpacing: "-1px",
         }}
       >
         {t.testiTitle}
-      </h2>
-      <div
-        style={{
-          maxWidth: "1200px",
-          width: "100%",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "40px",
-          justifyContent: "center",
-        }}
-      >
+      </motion.h2>
+
+      <div className="testimonials-grid">
         {t.testimonials.map((testi, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            style={{
-              flex: "1 1 300px",
-              backgroundColor: theme.surface,
-              padding: "40px",
-              borderRadius: "16px",
-            }}
+            transition={{ delay: index * 0.1, duration: 0.6 }}
+            whileHover={{ y: -8 }}
+            className="testimonial-card"
           >
             <span
               style={{
-                fontSize: "3rem",
+                fontSize: "4rem",
                 color: theme.primary,
-                lineHeight: "1",
+                lineHeight: "0.5",
                 display: "block",
-                marginBottom: "16px",
+                marginBottom: "24px",
+                fontFamily: "serif",
+                opacity: 0.3,
               }}
             >
-              "
+              “
             </span>
             <p
               style={{
@@ -70,21 +111,32 @@ export const TestimonialsSection: React.FC = () => {
                 fontWeight: 500,
                 color: theme.text,
                 lineHeight: "1.6",
-                marginBottom: "24px",
+                marginBottom: "32px",
+                flexGrow: 1,
               }}
             >
               {testi.quote}
             </p>
-            <p
+            <div
               style={{
-                fontSize: "1rem",
-                fontWeight: 700,
-                color: theme.primary,
-                margin: 0,
+                marginTop: "auto",
+                borderTop: `1px solid ${theme.textSecondary}22`,
+                paddingTop: "20px",
               }}
             >
-              — {testi.author}
-            </p>
+              <p
+                style={{
+                  fontSize: "0.95rem",
+                  fontWeight: 700,
+                  color: theme.primary,
+                  margin: 0,
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                }}
+              >
+                {testi.author}
+              </p>
+            </div>
           </motion.div>
         ))}
       </div>
