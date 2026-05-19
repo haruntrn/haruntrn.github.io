@@ -9,10 +9,10 @@ import {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
 }) => {
-  const [lang, setLang] = useState<Language>("en");
+  const [lang] = useState<Language>("en");
 
   const toggleLanguage = () => {
-    setLang((prev: Language) => (prev === "en" ? "tr" : "en"));
+    // setLang((prev: Language) => (prev === "en" ? "tr" : "en"));
   };
 
   return (

@@ -13,8 +13,11 @@ export const StatsSection: React.FC = () => {
     <section
       style={{
         padding: "80px 20px",
-        borderRadius: "16px",
-        backgroundColor: theme.surface,
+        borderTopLeftRadius: "24px",
+        borderTopRightRadius: "24px",
+        borderBottomLeftRadius: "0px",
+        borderBottomRightRadius: "0px",
+        backgroundColor: `${theme.primary}16`,
         display: "flex",
         justifyContent: "center",
         fontFamily: "'Inter', sans-serif",

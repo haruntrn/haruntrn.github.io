@@ -4,21 +4,36 @@ import logo from "../assets/logo.png";
 import { useLanguage } from "../contexts/LanguageContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Header: React.FC = () => {
   const { theme } = useTheme();
-  const { t, toggleLanguage } = useLanguage();
+  const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { pathname } = useLocation();
 
-  const navLinks = [
-    { label: t.sectorsTitle, href: "#sectors" },
-    { label: t.servicesTitle, href: "#services" },
-    { label: t.infraTitle, href: "#infrastructure" },
-    { label: t.testiTitle, href: "#testimonials" },
-  ];
+  // Track scroll to add background blur/color after leaving the very top
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const handleScroll = (
+  const navLinks =
+    pathname === "/"
+      ? [
+          { label: t.servicesTitle, href: "#services" },
+          { label: t.infraTitle, href: "#infrastructure" },
+          { label: t.testiTitle, href: "#testimonials" },
+          { label: t.electronicsSoftwareOutsourcing, href: "/outsourcing" },
+        ]
+      : [];
+
+  const handleScrollToId = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
@@ -26,15 +41,17 @@ export const Header: React.FC = () => {
     setIsMobileMenuOpen(false);
 
     const targetId = href.replace(/^#/, "");
-    const elem = document.getElementById(targetId);
 
-    if (elem) {
-      elem.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-      window.history.pushState(null, "", href);
-    }
+    setTimeout(() => {
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        elem.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        window.history.pushState(null, "", href);
+      }
+    }, 300);
   };
 
   return (
@@ -42,15 +59,23 @@ export const Header: React.FC = () => {
       <header
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "space-evenly",
           alignItems: "center",
-          padding: "24px 40px",
-          backgroundColor: theme.background,
-          borderBottom: `1px solid ${theme.surface}`,
+          padding: isScrolled ? "16px 40px" : "24px 40px",
+          backgroundColor: isScrolled ? `${theme.background}` : "transparent",
+          backdropFilter: isScrolled ? "blur(12px)" : "none",
+          WebkitBackdropFilter: isScrolled ? "blur(12px)" : "none",
+          borderBottom: isScrolled
+            ? `1px solid ${theme.surface}`
+            : "1px solid transparent",
           fontFamily: "'Inter', sans-serif",
-          position: "sticky",
+          position: "fixed", // Key change: Fixed allows it to sit on top of Hero
           top: 0,
-          zIndex: 100,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          transition: "all 0.3s ease-in-out",
+          boxShadow: isScrolled ? "0px 2px 4px rgba(0, 0, 0, 0.1)" : "none",
         }}
       >
         <style>
@@ -59,17 +84,17 @@ export const Header: React.FC = () => {
               scroll-behavior: smooth;
             }
             section {
-              scroll-margin-top: 100px;
+              scroll-margin-top: 80px;
             }
             .header-logo {
-              height: 32px;
+              height: 24px;
               width: auto;
               display: block;
               cursor: pointer;
             }
             .desktop-nav {
               display: flex;
-              gap: 32px;
+              gap: 24px;
             }
             .mobile-toggle {
               display: none;
@@ -97,42 +122,46 @@ export const Header: React.FC = () => {
             @media (max-width: 768px) {
               header {
                 padding: 16px 20px !important;
-              }
-              .header-logo {
-                height: 24px !important;
+                justify-content: space-between !important;
               }
             }
           `}
         </style>
 
-        <div style={{ display: "flex", alignItems: "flex-end", gap: "48px" }}>
-          <motion.img
-            src={logo}
-            alt="AGASPERA Logo"
-            className="header-logo"
-            whileHover={{ opacity: 0.8 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          />
+        <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          <Link to="/">
+            <motion.img
+              src={logo}
+              alt="AGASPERA Logo"
+              className="header-logo"
+              whileHover={{ opacity: 0.8 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            />
+          </Link>
 
           <nav className="desktop-nav">
             {navLinks.map((link, index) => (
-              <motion.a
+              <Link
                 key={index}
-                href={link.href}
-                onClick={(e) => handleScroll(e, link.href)}
-                whileHover={{ color: theme.primary }}
+                to={link.href}
+                onClick={(e) => {
+                  if (link.href.startsWith("/")) {
+                    setIsMobileMenuOpen(false);
+                  } else {
+                    handleScrollToId(e, link.href);
+                  }
+                }}
                 style={{
                   textDecoration: "none",
-                  fontSize: "1.05rem",
+                  fontSize: "0.9rem",
                   fontWeight: 600,
                   color: theme.textSecondary,
                   transition: "color 0.2s ease",
                   lineHeight: 1,
-                  paddingBottom: "2px",
                 }}
               >
                 {link.label}
-              </motion.a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -140,11 +169,11 @@ export const Header: React.FC = () => {
         <div className="desktop-actions">
           <motion.a
             href="#contact"
-            onClick={(e) => handleScroll(e, "#contact")}
+            onClick={(e) => handleScrollToId(e, "#contact")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{
-              padding: "16px 20px",
+              padding: "12px 24px",
               backgroundColor: theme.primary,
               color: "#ffffff",
               borderRadius: "50px",
@@ -152,7 +181,7 @@ export const Header: React.FC = () => {
               fontSize: "0.85rem",
               fontWeight: 700,
               letterSpacing: "0.5px",
-              boxShadow: "0 4px 12px rgba(15, 44, 89, 0.15)",
+              boxShadow: isScrolled ? "0 4px 12px rgba(0, 0, 0, 0.1)" : "none",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -160,25 +189,23 @@ export const Header: React.FC = () => {
           >
             {t.footerLinks2[1]}
           </motion.a>
-
+          {/* 
           <motion.button
             onClick={toggleLanguage}
             whileHover={{ scale: 1.05, backgroundColor: theme.surface }}
             whileTap={{ scale: 0.95 }}
             style={{
-              padding: "16px 20px",
+              padding: "12px 20px",
               cursor: "pointer",
-              backgroundColor: theme.background,
+              backgroundColor: isScrolled ? "transparent" : theme.background,
               border: `1px solid ${theme.textSecondary}44`,
               color: theme.text,
               borderRadius: "50px",
               fontSize: "0.85rem",
               fontWeight: 700,
-              letterSpacing: "1px",
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              boxShadow: "0 2px 10px rgba(0,0,0,0.02)",
             }}
           >
             <svg
@@ -188,15 +215,13 @@ export const Header: React.FC = () => {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
             >
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="2" y1="12" x2="22" y2="12"></line>
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
             </svg>
             {t.switchLang}
-          </motion.button>
+          </motion.button> */}
         </div>
 
         <button
@@ -210,8 +235,6 @@ export const Header: React.FC = () => {
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
           >
             {isMobileMenuOpen ? (
               <>
@@ -243,6 +266,7 @@ export const Header: React.FC = () => {
                 left: 0,
                 right: 0,
                 zIndex: 99,
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
               }}
             >
               <nav
@@ -252,14 +276,19 @@ export const Header: React.FC = () => {
                   padding: "20px",
                   gap: "10px",
                   backgroundColor: theme.surface,
-                  borderBottom: `1px solid ${theme.textSecondary}55`,
                 }}
               >
                 {navLinks.map((link, index) => (
-                  <a
+                  <Link
                     key={index}
-                    href={link.href}
-                    onClick={(e) => handleScroll(e, link.href)}
+                    to={link.href}
+                    onClick={(e) => {
+                      if (link.href.startsWith("/")) {
+                        setIsMobileMenuOpen(false);
+                      } else {
+                        handleScrollToId(e, link.href);
+                      }
+                    }}
                     style={{
                       textDecoration: "none",
                       fontSize: "1.1rem",
@@ -270,9 +299,8 @@ export const Header: React.FC = () => {
                     }}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
-
                 <div
                   style={{
                     padding: "20px 10px",
@@ -283,7 +311,7 @@ export const Header: React.FC = () => {
                 >
                   <motion.a
                     href="#contact"
-                    onClick={(e) => handleScroll(e, "#contact")}
+                    onClick={(e) => handleScrollToId(e, "#contact")}
                     style={{
                       padding: "16px",
                       backgroundColor: theme.primary,
@@ -297,8 +325,7 @@ export const Header: React.FC = () => {
                   >
                     {t.footerLinks2[1]}
                   </motion.a>
-
-                  <motion.button
+                  {/* <motion.button
                     onClick={() => {
                       toggleLanguage();
                       setIsMobileMenuOpen(false);
@@ -317,20 +344,8 @@ export const Header: React.FC = () => {
                       gap: "10px",
                     }}
                   >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                    </svg>
                     {t.switchLang}
-                  </motion.button>
+                  </motion.button> */}
                 </div>
               </nav>
             </motion.div>

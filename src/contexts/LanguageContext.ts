@@ -2,7 +2,8 @@
 
 import { createContext, useContext, type ReactNode } from "react";
 
-export type Language = "en" | "tr";
+// export type Language = "en" | "tr";
+export type Language = "en";
 
 export interface TranslationKeys {
   switchLang: string;
@@ -20,6 +21,7 @@ export interface TranslationKeys {
   infraSub: string;
   infra: { title: string; desc: string }[];
   testiTitle: string;
+  electronicsSoftwareOutsourcing: string;
   testimonials: { quote: string; author: string }[];
   stats: { value: string; label: string }[];
   finalTitle: string;
@@ -66,7 +68,7 @@ export const translations: Record<Language, TranslationKeys> = {
     switchLang: "EN",
     heroTitle: "Structured",
     heroTitleHighlight: " U.S. Market Entry ",
-    heroTitleEnd: "for Industrial Companies",
+    heroTitleEnd: "For Industrial Companies",
     heroSub:
       "Market entry strategy, distributor development, and scalable sales pipeline building in the United States.",
     heroCta: "Start Your U.S. Market Entry Strategy",
@@ -129,6 +131,7 @@ export const translations: Record<Language, TranslationKeys> = {
       },
     ],
     testiTitle: "Market Entry Success",
+    electronicsSoftwareOutsourcing: "Electronics & Software Outsourcing",
     testimonials: [
       {
         quote:
@@ -224,168 +227,168 @@ export const translations: Record<Language, TranslationKeys> = {
     company: "Company",
     solutions: "Solutions",
   },
-  tr: {
-    switchLang: "TR",
-    heroTitle: "Endüstriyel Şirketler İçin",
-    heroTitleHighlight: " Yapılandırılmış ",
-    heroTitleEnd: "ABD Pazarına Giriş",
-    heroSub:
-      "ABD pazarına giriş stratejisi, distribütör ağı geliştirme ve sürdürülebilir satış fırsatları oluşturma.",
-    heroCta: "ABD Pazar Giriş Stratejinizi Başlatın",
-    heroSubCta: "İlk danışma görüşmesi ücretsizdir.",
-    sectorsTitle: "Çalıştığımız Sektörler",
-    sectors: [
-      "Endüstriyel Malzemeler ve Ekipmanlar",
-      "Üretim ve İmalat",
-      "Mühendislik",
-      "Ambalaj ve Paketleme",
-      "B2B Endüstriyel Şirketler",
-    ],
-    servicesTitle: "Hizmetlerimiz",
-    services: [
-      {
-        title: "Standart ve Teşvik Danışmanlığı",
-        desc: "ABD ürün standartları, regülasyonlar ve uluslararası pazara girişte kullanılabilecek teşvik ve hibe programları konusunda rehberlik.",
-        span: 2,
-      },
-      {
-        title: "Pazar Giriş Stratejisi",
-        desc: "Hedef pazar segmentlerinin belirlenmesi, fiyatlandırma konumlandırması ve ABD pazarı için doğru satış kanallarının oluşturulmasını kapsayan yapılandırılmış plan.",
-        span: 1,
-      },
-      {
-        title: "Satış ve Distribütör Geliştirme",
-        desc: "ABD pazarında ölçeklenebilir bir satış ağı oluşturmak için potansiyel distribütörlerin ve iş ortaklarının belirlenmesi, değerlendirilmesi ve geliştirilmesi.",
-        span: 1,
-      },
-      {
-        title: "Satış Pipeline Geliştirme",
-        desc: "Hedefli müşteri erişimi, fırsat değerlendirme ve satış süreçlerinin yapılandırılması ile güçlü bir B2B satış pipeline oluşturulması.",
-        span: 1,
-      },
-      {
-        title: "E-Ticaret Kanal Geliştirme",
-        desc: "Amazon, Walmart ve eBay gibi büyük ABD pazar yerleri üzerinden ek satış kanallarının oluşturulması ve yönetimi.",
-        span: 1,
-      },
-    ],
-    infraTitle: "ABD Pazar Altyapısı",
-    infraSub:
-      "ABD pazarına giriş ve büyüme sürecini destekleyen ticari altyapıya erişim.",
-    infra: [
-      {
-        title: "Dağıtım ve Satış Kanalları",
-        desc: "Distribütörler, satış partnerleri ve sektör ağları ile bağlantı.",
-      },
-      {
-        title: "Lojistik ve Depolama",
-        desc: "ABD genelinde operasyonları destekleyen 3PL depolama ve dağıtım.",
-      },
-      {
-        title: "E-Ticaret Platformları",
-        desc: "Amazon, Walmart ve eBay üzerinde kanal geliştirme.",
-      },
-      {
-        title: "Operasyonel İş Ortakları",
-        desc: "Lojistik sağlayıcılar, servis partnerleri ve ticari aracılar.",
-      },
-    ],
-    testiTitle: "Referans / Başarı Hikayeleri",
-    testimonials: [
-      {
-        quote:
-          "Yapılandırılmış pazar giriş yaklaşımı sayesinde ABD distribütör yapısını daha iyi anlayarak ürün konumlandırmamıza uygun potansiyel iş ortaklarını belirleyebildik.",
-        author: "Ambalaj Üreticisi",
-      },
-      {
-        quote:
-          "Fiyatlandırma, pazar segmentleri ve konumlandırma üzerine yapılan yapılandırılmış analiz sayesinde ABD pazarına nasıl yaklaşmamız gerektiğini çok daha net gördük.",
-        author: "Endüstriyel Malzeme Şirketi",
-      },
-      {
-        quote:
-          "Bu süreç ABD pazarında hedefli bir satış pipeline oluşturmamıza ve uzun vadeli büyümeyi destekleyecek potansiyel iş ortaklarını belirlememize yardımcı oldu.",
-        author: "Üretim Şirketi",
-      },
-    ],
-    stats: [
-      { value: "50+", label: "Potansiyel distribütör analizi" },
-      { value: "6 Ay", label: "Yapılandırılmış pazar giriş programı" },
-      { value: "50", label: "Eyalette pazar erişimi" },
-      { value: "Milyon+", label: "E-ticaret platformu alıcısı" },
-    ],
-    finalTitle: "ABD Pazarına Girmeye Hazır mısınız?",
-    footerLinks1: ["Ana Sayfa", "Hizmetler", "Pazar Giriş Programı"],
-    footerLinks2: ["İçgörüler", "Bize Ulaşın"],
-    footerRights: "© 2026 AGASPERA LLC. Tüm hakları saklıdır.",
-    phasesTitle: "3 Fazlı Pazara Giriş Modeli",
-    phase1: "Pazara Hazırlık: Segmentasyon, fiyatlandırma, hedefleme",
-    phase2: "Satış Geliştirme: Distribütör iletişimi, satış hattı",
-    phase3: "Pazar Genişletme: Satış operasyonlarını ölçeklendirme",
-    legalModalTitle: "Yasal Bilgiler",
-    legalTabs: { privacy: "Gizlilik", cookies: "Çerezler", terms: "Şartlar" },
-    legalClose: "Kapat",
-    privacyContent: {
-      title: "Gizlilik Politikası",
-      updated: "Son Güncelleme: Mart 2026",
-      sub: "AGASPERA olarak gizliliğinize saygı duyuyoruz. Bu politika, web sitemizi kullandığınızda verilerinizi nasıl işlediğimizi açıklar.",
-      sections: [
-        {
-          h: "1. Veri Toplama",
-          p: "Bir kullanıcı veritabanı tutmuyoruz. Sadece iletişim formumuz aracılığıyla gönüllü olarak sağladığınız bilgileri (İsim, E-posta, Mesaj) topluyoruz.",
-        },
-        {
-          h: "2. Üçüncü Taraf İşleme",
-          p: "Sorularınızı doğrudan gelen kutumuza iletmek için EmailJS kullanıyoruz. Spam'i önlemek için Google reCAPTCHA kullanıyoruz; bu hizmet, insan olduğunuzu doğrulamak için cihaz ve tarayıcı bilgilerini toplayabilir.",
-        },
-        {
-          h: "3. Veri Saklama",
-          p: "İletilen talepler yalnızca hizmetlerimizi sunmak için gerekli olduğu sürece saklanır. Bilgilerinizi üçüncü taraf pazarlamacılarla satmayız veya paylaşmayız.",
-        },
-      ],
-    },
-    cookieContent: {
-      title: "Çerez Politikası",
-      sub: "Web sitemiz, güvenliği ve işlevselliği sağlamak için minimum düzeyde çerez kullanır.",
-      sections: [
-        {
-          h: "1. Zorunlu Çerezler",
-          p: "Google reCAPTCHA ile ilgili temel çerezleri kullanıyoruz. Bunlar, sitemizi otomatik saldırılardan ve bot trafiğinden korumak için kesinlikle gereklidir.",
-        },
-        {
-          h: "2. İşlevsel Çerezler",
-          p: "Dil tercihlerinizi veya yasal uyarılarımızı onaylayıp onaylamadığınızı hatırlamak için yerel depolama (local storage) kullanabiliriz.",
-        },
-        {
-          h: "3. Çerezlerin Yönetimi",
-          p: "Tarayıcınızı bu çerezleri engelleyecek veya sizi uyaracak şekilde ayarlayabilirsiniz, ancak sitenin bazı bölümleri bunlar olmadan düzgün çalışmayabilir.",
-        },
-      ],
-    },
-    termsContent: {
-      title: "Kullanım Şartları",
-      sections: [
-        {
-          h: "1. Şartların Kabulü",
-          p: "agaspera.com adresine erişerek bu şartlara bağlı kalmayı kabul etmiş olursunuz. Kabul etmiyorsanız, lütfen siteden derhal çıkış yapın.",
-        },
-        {
-          h: "2. Fikri Mülkiyet",
-          p: "Bu sitedeki tüm içerik, logolar ve endüstriyel strateji belgeleri AGASPERA LLC'nin münhasır mülkiyetindedir.",
-        },
-        {
-          h: "3. Sorumluluk Reddi",
-          p: "Bu web sitesinde sağlanan bilgiler yalnızca genel bilgilendirme amaçlıdır ve profesyonel hukuki veya mali tavsiye teşkil etmez.",
-        },
-        {
-          h: "4. Uygulanacak Hukuk",
-          p: "Bu şartlar Amerika Birleşik Devletleri, Virginia Eyaleti yasalarına tabidir.",
-        },
-      ],
-    },
-    company: "Kurumsal",
-    solutions: "Hizmetlerimiz",
-  },
+  // tr: {
+  //   switchLang: "TR",
+  //   heroTitle: "Endüstriyel Şirketler İçin",
+  //   heroTitleHighlight: " Yapılandırılmış ",
+  //   heroTitleEnd: "ABD Pazarına Giriş",
+  //   heroSub:
+  //     "ABD pazarına giriş stratejisi, distribütör ağı geliştirme ve sürdürülebilir satış fırsatları oluşturma.",
+  //   heroCta: "ABD Pazar Giriş Stratejinizi Başlatın",
+  //   heroSubCta: "İlk danışma görüşmesi ücretsizdir.",
+  //   sectorsTitle: "Çalıştığımız Sektörler",
+  //   sectors: [
+  //     "Endüstriyel Malzemeler ve Ekipmanlar",
+  //     "Üretim ve İmalat",
+  //     "Mühendislik",
+  //     "Ambalaj ve Paketleme",
+  //     "B2B Endüstriyel Şirketler",
+  //   ],
+  //   servicesTitle: "Hizmetlerimiz",
+  //   services: [
+  //     {
+  //       title: "Standart ve Teşvik Danışmanlığı",
+  //       desc: "ABD ürün standartları, regülasyonlar ve uluslararası pazara girişte kullanılabilecek teşvik ve hibe programları konusunda rehberlik.",
+  //       span: 2,
+  //     },
+  //     {
+  //       title: "Pazar Giriş Stratejisi",
+  //       desc: "Hedef pazar segmentlerinin belirlenmesi, fiyatlandırma konumlandırması ve ABD pazarı için doğru satış kanallarının oluşturulmasını kapsayan yapılandırılmış plan.",
+  //       span: 1,
+  //     },
+  //     {
+  //       title: "Satış ve Distribütör Geliştirme",
+  //       desc: "ABD pazarında ölçeklenebilir bir satış ağı oluşturmak için potansiyel distribütörlerin ve iş ortaklarının belirlenmesi, değerlendirilmesi ve geliştirilmesi.",
+  //       span: 1,
+  //     },
+  //     {
+  //       title: "Satış Pipeline Geliştirme",
+  //       desc: "Hedefli müşteri erişimi, fırsat değerlendirme ve satış süreçlerinin yapılandırılması ile güçlü bir B2B satış pipeline oluşturulması.",
+  //       span: 1,
+  //     },
+  //     {
+  //       title: "E-Ticaret Kanal Geliştirme",
+  //       desc: "Amazon, Walmart ve eBay gibi büyük ABD pazar yerleri üzerinden ek satış kanallarının oluşturulması ve yönetimi.",
+  //       span: 1,
+  //     },
+  //   ],
+  //   infraTitle: "ABD Pazar Altyapısı",
+  //   infraSub:
+  //     "ABD pazarına giriş ve büyüme sürecini destekleyen ticari altyapıya erişim.",
+  //   infra: [
+  //     {
+  //       title: "Dağıtım ve Satış Kanalları",
+  //       desc: "Distribütörler, satış partnerleri ve sektör ağları ile bağlantı.",
+  //     },
+  //     {
+  //       title: "Lojistik ve Depolama",
+  //       desc: "ABD genelinde operasyonları destekleyen 3PL depolama ve dağıtım.",
+  //     },
+  //     {
+  //       title: "E-Ticaret Platformları",
+  //       desc: "Amazon, Walmart ve eBay üzerinde kanal geliştirme.",
+  //     },
+  //     {
+  //       title: "Operasyonel İş Ortakları",
+  //       desc: "Lojistik sağlayıcılar, servis partnerleri ve ticari aracılar.",
+  //     },
+  //   ],
+  //   testiTitle: "Referans / Başarı Hikayeleri",
+  //   testimonials: [
+  //     {
+  //       quote:
+  //         "Yapılandırılmış pazar giriş yaklaşımı sayesinde ABD distribütör yapısını daha iyi anlayarak ürün konumlandırmamıza uygun potansiyel iş ortaklarını belirleyebildik.",
+  //       author: "Ambalaj Üreticisi",
+  //     },
+  //     {
+  //       quote:
+  //         "Fiyatlandırma, pazar segmentleri ve konumlandırma üzerine yapılan yapılandırılmış analiz sayesinde ABD pazarına nasıl yaklaşmamız gerektiğini çok daha net gördük.",
+  //       author: "Endüstriyel Malzeme Şirketi",
+  //     },
+  //     {
+  //       quote:
+  //         "Bu süreç ABD pazarında hedefli bir satış pipeline oluşturmamıza ve uzun vadeli büyümeyi destekleyecek potansiyel iş ortaklarını belirlememize yardımcı oldu.",
+  //       author: "Üretim Şirketi",
+  //     },
+  //   ],
+  //   stats: [
+  //     { value: "50+", label: "Potansiyel distribütör analizi" },
+  //     { value: "6 Ay", label: "Yapılandırılmış pazar giriş programı" },
+  //     { value: "50", label: "Eyalette pazar erişimi" },
+  //     { value: "Milyon+", label: "E-ticaret platformu alıcısı" },
+  //   ],
+  //   finalTitle: "ABD Pazarına Girmeye Hazır mısınız?",
+  //   footerLinks1: ["Ana Sayfa", "Hizmetler", "Pazar Giriş Programı"],
+  //   footerLinks2: ["İçgörüler", "Bize Ulaşın"],
+  //   footerRights: "© 2026 AGASPERA LLC. Tüm hakları saklıdır.",
+  //   phasesTitle: "3 Fazlı Pazara Giriş Modeli",
+  //   phase1: "Pazara Hazırlık: Segmentasyon, fiyatlandırma, hedefleme",
+  //   phase2: "Satış Geliştirme: Distribütör iletişimi, satış hattı",
+  //   phase3: "Pazar Genişletme: Satış operasyonlarını ölçeklendirme",
+  //   legalModalTitle: "Yasal Bilgiler",
+  //   legalTabs: { privacy: "Gizlilik", cookies: "Çerezler", terms: "Şartlar" },
+  //   legalClose: "Kapat",
+  //   privacyContent: {
+  //     title: "Gizlilik Politikası",
+  //     updated: "Son Güncelleme: Mart 2026",
+  //     sub: "AGASPERA olarak gizliliğinize saygı duyuyoruz. Bu politika, web sitemizi kullandığınızda verilerinizi nasıl işlediğimizi açıklar.",
+  //     sections: [
+  //       {
+  //         h: "1. Veri Toplama",
+  //         p: "Bir kullanıcı veritabanı tutmuyoruz. Sadece iletişim formumuz aracılığıyla gönüllü olarak sağladığınız bilgileri (İsim, E-posta, Mesaj) topluyoruz.",
+  //       },
+  //       {
+  //         h: "2. Üçüncü Taraf İşleme",
+  //         p: "Sorularınızı doğrudan gelen kutumuza iletmek için EmailJS kullanıyoruz. Spam'i önlemek için Google reCAPTCHA kullanıyoruz; bu hizmet, insan olduğunuzu doğrulamak için cihaz ve tarayıcı bilgilerini toplayabilir.",
+  //       },
+  //       {
+  //         h: "3. Veri Saklama",
+  //         p: "İletilen talepler yalnızca hizmetlerimizi sunmak için gerekli olduğu sürece saklanır. Bilgilerinizi üçüncü taraf pazarlamacılarla satmayız veya paylaşmayız.",
+  //       },
+  //     ],
+  //   },
+  //   cookieContent: {
+  //     title: "Çerez Politikası",
+  //     sub: "Web sitemiz, güvenliği ve işlevselliği sağlamak için minimum düzeyde çerez kullanır.",
+  //     sections: [
+  //       {
+  //         h: "1. Zorunlu Çerezler",
+  //         p: "Google reCAPTCHA ile ilgili temel çerezleri kullanıyoruz. Bunlar, sitemizi otomatik saldırılardan ve bot trafiğinden korumak için kesinlikle gereklidir.",
+  //       },
+  //       {
+  //         h: "2. İşlevsel Çerezler",
+  //         p: "Dil tercihlerinizi veya yasal uyarılarımızı onaylayıp onaylamadığınızı hatırlamak için yerel depolama (local storage) kullanabiliriz.",
+  //       },
+  //       {
+  //         h: "3. Çerezlerin Yönetimi",
+  //         p: "Tarayıcınızı bu çerezleri engelleyecek veya sizi uyaracak şekilde ayarlayabilirsiniz, ancak sitenin bazı bölümleri bunlar olmadan düzgün çalışmayabilir.",
+  //       },
+  //     ],
+  //   },
+  //   termsContent: {
+  //     title: "Kullanım Şartları",
+  //     sections: [
+  //       {
+  //         h: "1. Şartların Kabulü",
+  //         p: "agaspera.com adresine erişerek bu şartlara bağlı kalmayı kabul etmiş olursunuz. Kabul etmiyorsanız, lütfen siteden derhal çıkış yapın.",
+  //       },
+  //       {
+  //         h: "2. Fikri Mülkiyet",
+  //         p: "Bu sitedeki tüm içerik, logolar ve endüstriyel strateji belgeleri AGASPERA LLC'nin münhasır mülkiyetindedir.",
+  //       },
+  //       {
+  //         h: "3. Sorumluluk Reddi",
+  //         p: "Bu web sitesinde sağlanan bilgiler yalnızca genel bilgilendirme amaçlıdır ve profesyonel hukuki veya mali tavsiye teşkil etmez.",
+  //       },
+  //       {
+  //         h: "4. Uygulanacak Hukuk",
+  //         p: "Bu şartlar Amerika Birleşik Devletleri, Virginia Eyaleti yasalarına tabidir.",
+  //       },
+  //     ],
+  //   },
+  //   company: "Kurumsal",
+  //   solutions: "Hizmetlerimiz",
+  // },
 };
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(

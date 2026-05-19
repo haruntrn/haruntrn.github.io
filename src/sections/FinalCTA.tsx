@@ -9,13 +9,6 @@ export const FinalCTA: React.FC = () => {
   const { theme } = useTheme();
   const { t } = useLanguage();
 
-  const handleScrollToContact = () => {
-    const elem = document.getElementById("contact");
-    if (elem) {
-      elem.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       style={{
@@ -95,9 +88,10 @@ export const FinalCTA: React.FC = () => {
             gap: "12px",
           }}
         >
-          <motion.button
+          <motion.a
+            href="mailto:info@agaspera.com"
+            target="_blank"
             className="final-cta-button"
-            onClick={handleScrollToContact}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{
@@ -110,10 +104,12 @@ export const FinalCTA: React.FC = () => {
               borderRadius: "8px",
               cursor: "pointer",
               boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+              textDecoration: "none",
+              width: "fit-content",
             }}
           >
             {t.heroCta}
-          </motion.button>
+          </motion.a>
           <span
             style={{
               fontSize: "0.9rem",

@@ -5,20 +5,20 @@ import { motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 
-import container_ship from "../assets/container-ship.jpeg";
-import cargo_plane from "../assets/cargo-plane.jpeg";
-import cargo_bay from "../assets/cargo-bay.jpeg";
-import cargo_containers from "../assets/cargo-containers.jpeg";
+import distribution from "../assets/distribution.webp";
+import logistics from "../assets/logistics.webp";
+import commerce from "../assets/e-commerce.webp";
+import operational from "../assets/op.webp";
 
 export const InfrastructureSection: React.FC = () => {
   const { theme } = useTheme();
   const { t } = useLanguage();
 
   const blocks = [
-    { title: t.infra[0].title, desc: t.infra[0].desc, image: cargo_bay },
-    { title: t.infra[1].title, desc: t.infra[1].desc, image: container_ship },
-    { title: t.infra[2].title, desc: t.infra[2].desc, image: cargo_containers },
-    { title: t.infra[3].title, desc: t.infra[3].desc, image: cargo_plane },
+    { title: t.infra[0].title, desc: t.infra[0].desc, image: distribution },
+    { title: t.infra[1].title, desc: t.infra[1].desc, image: logistics },
+    { title: t.infra[2].title, desc: t.infra[2].desc, image: commerce },
+    { title: t.infra[3].title, desc: t.infra[3].desc, image: operational },
   ];
 
   return (
@@ -26,7 +26,7 @@ export const InfrastructureSection: React.FC = () => {
       id="infrastructure"
       style={{
         padding: "160px 20px",
-        backgroundColor: theme.darkSection,
+        backgroundColor: theme.primary,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -60,6 +60,7 @@ export const InfrastructureSection: React.FC = () => {
             overflow: hidden;
             background-color: rgba(255,255,255,0.05);
             aspect-ratio: 4 / 3;
+            width: 100%;
           }
 
           .infra-image {
@@ -82,22 +83,27 @@ export const InfrastructureSection: React.FC = () => {
 
           @media (max-width: 1124px) {
             .infra-container {
-               gap: 60px;
+               gap: 80px;
             }
             .infra-row {
               grid-template-columns: 1fr;
               gap: 32px;
+              justify-items: center; /* Centers the grid items horizontally */
             }
             .infra-row:nth-child(even) .infra-image-wrapper {
               grid-row: 1;
             }
             .infra-image-wrapper {
               height: 380px;
+              max-width: 600px; /* Prevents the image from being too wide on tablets */
+              margin: 0 auto;
               border-radius: 24px;
             }
             .infra-content {
               padding: 0 10px;
               text-align: center;
+              max-width: 650px;
+              margin: 0 auto;
             }
             .infra-title {
               font-size: 1.85rem !important;
@@ -116,6 +122,10 @@ export const InfrastructureSection: React.FC = () => {
              }
              .infra-image-wrapper {
                 height: 280px;
+                width: 100%; /* Take full width on mobile */
+             }
+             .infra-content {
+                text-align: start;
              }
           }
         `}

@@ -101,7 +101,6 @@ export const ServicesBentoSection: React.FC = () => {
 
           @media (max-width: 768px) {
             section {
-            
               padding: 80px 20px !important;
             }
             .services-header {
@@ -192,22 +191,6 @@ export const ServicesBentoSection: React.FC = () => {
                 gridColumn: service.span === 2 ? "span 2" : "span 1",
               }}
             >
-              <div className="bento-arrow">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-
               <div style={{ zIndex: 2, position: "relative", maxWidth: "90%" }}>
                 <h3 className="bento-title">{service.title}</h3>
                 <p className="bento-desc">{service.desc}</p>
