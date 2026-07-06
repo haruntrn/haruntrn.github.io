@@ -6,6 +6,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import logo from "../assets/logo.png";
 import { LegalModal } from "./LegalModal";
+import { Link } from "react-router-dom";
 
 export const Footer: React.FC = () => {
   const { theme } = useTheme();
@@ -63,6 +64,11 @@ export const Footer: React.FC = () => {
             padding: 0;
             text-align: left;
             width: 100%;
+          }
+          .footer-link:hover {
+            color: #ffffff;
+            transform: translateX(2px);
+            transition: all 0.5s;
           }
           .contact-item {
             display: flex;
@@ -195,33 +201,17 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <motion.a
-              href="#services"
-              whileHover={{ color: "#ffffff", x: 2 }}
-              className="footer-link"
-            >
-              {t.footerLinks1[1]}
-            </motion.a>
-            <motion.a
-              href="#infrastructure"
-              whileHover={{ color: "#ffffff", x: 2 }}
-              className="footer-link"
-            >
-              {t.infraTitle}
-            </motion.a>
-            <motion.a
-              href="#testimonials"
-              whileHover={{ color: "#ffffff", x: 2 }}
-              className="footer-link"
-            >
-              {t.testiTitle}
-            </motion.a>
+            <Link to="/market-entry" className="footer-link">
+              {t.marketEntry}
+            </Link>
+            <Link to="/outsourcing" className="footer-link">
+              {t.electronicsSoftwareOutsourcing}
+            </Link>
           </div>
 
           <div>
             <motion.button
               onClick={() => openLegal("privacy")}
-              whileHover={{ color: "#ffffff", x: 2 }}
               className="footer-link"
             >
               {t.legalTabs.privacy}{" "}
@@ -231,7 +221,6 @@ export const Footer: React.FC = () => {
             </motion.button>
             <motion.button
               onClick={() => openLegal("cookies")}
-              whileHover={{ color: "#ffffff", x: 2 }}
               className="footer-link"
             >
               {t.legalTabs.cookies}{" "}
@@ -241,7 +230,6 @@ export const Footer: React.FC = () => {
             </motion.button>
             <motion.button
               onClick={() => openLegal("terms")}
-              whileHover={{ color: "#ffffff", x: 2 }}
               className="footer-link"
             >
               {t.termsContent.title}

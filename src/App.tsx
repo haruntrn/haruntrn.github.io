@@ -5,28 +5,71 @@ import { ThemeProvider } from "./providers/ThemeProvider";
 import { LanguageProvider } from "./providers/LanguageProvider";
 
 import { HeroSection } from "./sections/HeroSection";
-import { SectorsSection } from "./sections/SectorsSection";
 import { ServicesBentoSection } from "./sections/ServicesBentoSection";
 import { InfrastructureSection } from "./sections/InfrastructureSection";
 import { TestimonialsSection } from "./sections/TestimonialsSection";
 import { StatsSection } from "./sections/StatsSection";
 import { FinalCTA } from "./sections/FinalCTA";
-import { Footer } from "./sections/Footer";
-import { Header } from "./sections/Header";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Layout } from "./_layout";
+import { OutsourcingWhatWeDoSection } from "./sections/outsourcing/OutsourcingWhatWeDoSection";
+import { OutsourcingServicesSection } from "./sections/outsourcing/OutsourcingServicesSection";
+import { OutsourcingWhyAndHowSection } from "./sections/outsourcing/OutsourcingWhyAndHowSection";
+import { OutsourcingCaseStudySection } from "./sections/outsourcing/OutsourcingCaseStudySection";
+import { OutsourcingHeroSection } from "./sections/outsourcing/OutsourcingHeroSection";
+import { OutsourcingKeyStatementSection } from "./sections/outsourcing/OutsourcingKeyStatementSection";
+import { OutsourcingFinalCTASection } from "./sections/outsourcing/OutsourcingFinalCTASection";
+import { AlternativeHeroSection } from "./sections/AlternativeHeroSection";
 
-const MainLayout: React.FC = () => {
+const AppRoutes: React.FC = () => {
   return (
-    <main>
-      <Header />
-      <HeroSection />
-      <SectorsSection />
-      <ServicesBentoSection />
-      <InfrastructureSection />
-      <TestimonialsSection />
-      <StatsSection />
-      <FinalCTA />
-      <Footer />
-    </main>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <>
+              {/* <HeroSection /> */}
+              <AlternativeHeroSection />
+              {/* <ServicesBentoSection />
+              <InfrastructureSection />
+              <TestimonialsSection />
+              <StatsSection /> */}
+              {/* <FinalCTA /> */}
+            </>
+          }
+        />
+
+        <Route
+          path="market-entry"
+          element={
+            <>
+              <HeroSection />
+              <ServicesBentoSection />
+              <InfrastructureSection />
+              <TestimonialsSection />
+              <StatsSection />
+              <FinalCTA />
+            </>
+          }
+        />
+
+        <Route
+          path="outsourcing"
+          element={
+            <>
+              <OutsourcingHeroSection />
+              <OutsourcingWhatWeDoSection />
+              <OutsourcingServicesSection />
+              <OutsourcingWhyAndHowSection />
+              <OutsourcingKeyStatementSection />
+              <OutsourcingCaseStudySection />
+              <OutsourcingFinalCTASection />
+            </>
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 
@@ -34,7 +77,9 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <MainLayout />
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
       </LanguageProvider>
     </ThemeProvider>
   );

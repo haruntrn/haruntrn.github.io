@@ -5,14 +5,15 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "../contexts/ThemeContext";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ContactModal } from "./ContactModal";
 
 export const Header: React.FC = () => {
   const { theme } = useTheme();
   const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { pathname } = useLocation();
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // Track scroll to add background blur/color after leaving the very top
   useEffect(() => {
@@ -23,16 +24,14 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks =
-    pathname === "/"
-      ? [
-          { label: t.servicesTitle, href: "#services" },
-          { label: t.infraTitle, href: "#infrastructure" },
-          { label: t.testiTitle, href: "#testimonials" },
-          { label: t.electronicsSoftwareOutsourcing, href: "/outsourcing" },
-        ]
-      : [];
+  const navLinks = [
+    // { label: t.servicesTitle, href: "#services" },
+    // { label: t.infraTitle, href: "#infrastructure" },
+    // { label: t.testiTitle, href: "#testimonials" },
+    { label: t.marketEntry, href: "/market-entry" },
 
+    { label: t.electronicsSoftwareOutsourcing, href: "/outsourcing" },
+  ];
   const handleScrollToId = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
@@ -57,6 +56,7 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
+        className="header"
         style={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -110,6 +110,10 @@ export const Header: React.FC = () => {
               gap: 16px;
             }
             @media (max-width: 1124px) {
+              header {
+                padding: 16px 20px !important;
+                justify-content: space-between !important;
+              }
               .desktop-nav, .desktop-actions {
                 display: none !important;
               }
@@ -119,12 +123,7 @@ export const Header: React.FC = () => {
                 justify-content: center;
               }
             }
-            @media (max-width: 768px) {
-              header {
-                padding: 16px 20px !important;
-                justify-content: space-between !important;
-              }
-            }
+           
           `}
         </style>
 
@@ -139,7 +138,7 @@ export const Header: React.FC = () => {
             />
           </Link>
 
-          <nav className="desktop-nav">
+          {/* <nav className="desktop-nav">
             {navLinks.map((link, index) => (
               <Link
                 key={index}
@@ -163,13 +162,12 @@ export const Header: React.FC = () => {
                 {link.label}
               </Link>
             ))}
-          </nav>
+          </nav> */}
         </div>
 
         <div className="desktop-actions">
-          <motion.a
-            href="#contact"
-            onClick={(e) => handleScrollToId(e, "#contact")}
+          <motion.button
+            onClick={() => setIsContactModalOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             style={{
@@ -185,10 +183,11 @@ export const Header: React.FC = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              cursor: "pointer",
             }}
           >
             {t.footerLinks2[1]}
-          </motion.a>
+          </motion.button>
           {/* 
           <motion.button
             onClick={toggleLanguage}
@@ -309,9 +308,8 @@ export const Header: React.FC = () => {
                     gap: "16px",
                   }}
                 >
-                  <motion.a
-                    href="#contact"
-                    onClick={(e) => handleScrollToId(e, "#contact")}
+                  <motion.button
+                    onClick={() => setIsContactModalOpen(true)}
                     style={{
                       padding: "16px",
                       backgroundColor: theme.primary,
@@ -320,11 +318,12 @@ export const Header: React.FC = () => {
                       textDecoration: "none",
                       fontSize: "1rem",
                       fontWeight: 700,
+                      cursor: "pointer",
                       textAlign: "center",
                     }}
                   >
                     {t.footerLinks2[1]}
-                  </motion.a>
+                  </motion.button>
                   {/* <motion.button
                     onClick={() => {
                       toggleLanguage();
@@ -352,6 +351,11 @@ export const Header: React.FC = () => {
           )}
         </AnimatePresence>
       </header>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </>
   );
 };

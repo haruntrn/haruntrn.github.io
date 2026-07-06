@@ -56,6 +56,7 @@ export interface TranslationKeys {
   };
   company: string;
   solutions: string;
+  marketEntry: string;
 }
 
 interface LanguageContextType {
@@ -226,6 +227,7 @@ export const translations: Record<Language, TranslationKeys> = {
     },
     company: "Company",
     solutions: "Solutions",
+    marketEntry: "U.S. Market Entry",
   },
   // tr: {
   //   switchLang: "TR",
